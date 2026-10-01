@@ -62,8 +62,8 @@ import subprocess
 EXPECTED_EDITIONS = {"everyday": 41, "creator": 70, "agency": 74, "full": 109}  # incl. 9 agents
 for ed, want in EXPECTED_EDITIONS.items():
     r = subprocess.run(
-        ["python3", "scripts/merge-config.py", "--patch", "config.patch.json",
-         "--config", "/nonexistent-forge-ci-probe.json", "--dry-run", "--edition", ed],
+        [sys.executable, "scripts/merge-config.py", "--patch", "config.patch.json",
+         "--config", "forge-ci-probe.json", "--dry-run", "--edition", ed],
         capture_output=True, text=True, cwd=ROOT)
     m = re.search(r"would add (\d+) keys", r.stdout)
     got = int(m.group(1)) if m else -1
