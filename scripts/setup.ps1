@@ -6,7 +6,8 @@ $ErrorActionPreference = "Continue"
 $ForgeDir = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 if (-not $Edition) {
   $ef = Join-Path $ForgeDir ".edition"
-  $Edition = if (Test-Path $ef) { (Get-Content $ef -Raw).Trim() } else { "full" }
+  $Edition = "full"
+  if (Test-Path $ef) { $Edition = (Get-Content $ef -Raw).Trim() }
 }
 $OpenCodeDir = if ($env:OPENCODE_DIR) { $env:OPENCODE_DIR } else { Join-Path $HOME ".config\opencode" }
 

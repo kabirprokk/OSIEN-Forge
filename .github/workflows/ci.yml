@@ -26,7 +26,7 @@ jobs:
         run: powershell -ExecutionPolicy Bypass -File scripts/setup.ps1
 
       - name: Validate merged config
-        run: python -m json.tool ~/.config/opencode/opencode.json > /dev/null
+        run: python -m json.tool $HOME/.config/opencode/opencode.json > /dev/null
 
       - name: Template audits (all must score 100)
         run: python scripts/audit-all.py
